@@ -4,13 +4,14 @@ import TarjetaTarea from './TarjetaTarea'
 export default function Contenedor({tareas}) {
   return (
 
-    <div className='Contenedor'>
-        <div className='fila'>
+    <div className='contenedor'>
+        <div className='fila cabecera'>
+            <div className='columna'>X</div>
             <div className='columna'>Titulo</div>
             <div className='columna'>Categoria</div>
             <div className='columna'>Estado</div>
             <div className='columna'>Fecha Creacion</div>
-            <div className='columna'>Fecha Vencimiento</div>
+            <div className='columna'>Fecha Ven</div>
             <div className='columna'>Prioridad</div>
 
         </div>
