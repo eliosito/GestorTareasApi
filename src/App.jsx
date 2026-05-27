@@ -18,6 +18,11 @@ function App() {
 
   const [abierto,setAbierto] = useState(false)
 
+  const eliminarSeleccionadas = () => {
+    const tareasActualizadas = tareas.filter(tarea => !tarea.selecionado)
+    setTareas(tareasActualizadas)
+  }
+
   const guardar = (tarea) => {
 
     console.log(tarea);
@@ -34,9 +39,7 @@ function App() {
   return (
     <>
 
-    <button onClick={() => setAbierto(true)}>
-    Crear Tarea
-    </button>
+
 
     <Modal
     abierto={abierto}
@@ -51,8 +54,10 @@ function App() {
     </Modal>
 
     <Contenedor
-    
     tareas={tareas}
+    setTareas={setTareas}
+    eliminar={eliminarSeleccionadas}
+    onAbrirFormulario={() => setAbierto(true)} 
     
 
     />

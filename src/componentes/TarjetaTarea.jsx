@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 
-function TarjetaTarea({titulo,categoria,estado,FechaCreacion,FechaVencimiento,prioridad,seleccionado}) {
+function TarjetaTarea({titulo,categoria,estado,FechaCreacion,FechaVencimiento,prioridad,seleccionado,index,setTareas,tareas}) {
 
+  const handleCheckChange = (e) => {
+    const tareasActualizadas = [...tareas];
+    tareasActualizadas[index].selecionado = e.target.checked;
+    setTareas(tareasActualizadas);
+  }
 
-  const [check,setCheck] = useState(seleccionado|| false)
 
 
   const getEstadoClass = (estado) => {
@@ -28,8 +32,8 @@ function TarjetaTarea({titulo,categoria,estado,FechaCreacion,FechaVencimiento,pr
       <div className='columna checkbox-col'>
         <input 
         type="checkbox"
-        checked={check}
-        onChange={(e) => setCheck(e.target.checked)}
+        onChange={handleCheckChange}
+        checked={seleccionado}
         />
 
 
