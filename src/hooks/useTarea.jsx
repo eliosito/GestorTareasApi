@@ -4,7 +4,7 @@ import { useState } from "react"
 export default function useTarea() {
 
     const [titulo, setTitulo] = useState("")
-    const [categoria, setCategoria] = useState("")
+    const [categoria, setCategoria] = useState("hogar")
     const [estado, setEstado] = useState("")
     const [FechaCreacion, setFechaCreacion] = useState("")
     const [FechaVencimiento, setFechaVencimiento] = useState("")
@@ -20,21 +20,15 @@ export default function useTarea() {
                 estado : (valor) => setEstado(valor),
                 FechaCreacion : (valor) => setFechaCreacion(valor),
                 FechaVencimiento: (valor) => setFechaVencimiento(valor),
-
-
-
-
-
-
+                prioridad: (valor) => setPrioridad(valor),
+                
             }
+            opciones[campo](valor)
         }
 
-
-
-
-
-
-  return (
-    <div>useTarea</div>
-  )
+    return [
+        {titulo, categoria , estado, FechaCreacion , FechaVencimiento, prioridad, seleccionado},
+        cambiarDato
+    ]
+    
 }
