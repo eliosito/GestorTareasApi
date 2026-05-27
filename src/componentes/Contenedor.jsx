@@ -10,8 +10,17 @@ export default function Contenedor({ tareas, setTareas, eliminar, onAbrirFormula
   const [detalleAbierto, setDetalleAbierto] = useState(false)
   const [tareaSeleccionada, setTareaSeleccionada] = useState(null)
 
-  const [tareasFiltradas, setTareasFiltradas] = useState(tareas)
+const [tareasFiltradas, setTareasFiltradas] = useState(tareas)
+const [filtroActivo, setFiltroActivo] = useState('')
 
+React.useEffect(() => {
+  if (filtroActivo === '') {
+    setTareasFiltradas(tareas)
+  } else {
+    const filtradas = tareas.filter(t => t.categoria === filtroActivo)
+    setTareasFiltradas(filtradas)
+  }
+}, [tareas, filtroActivo])
 
   const abrirDetalle = (tarea) => {
     setTareaSeleccionada(tarea)
@@ -24,7 +33,7 @@ export default function Contenedor({ tareas, setTareas, eliminar, onAbrirFormula
   return (
     <>
       <div className='header-tareas'>
-        <FiltroModal tareas={tareas} setTareasFiltradas={setTareasFiltradas} />
+        <FiltroModal tareas={tareas} setTareasFiltradas={setTareasFiltradas}   setFiltroActivo={setFiltroActivo} />
 
         <div className='header-derecha'>
           <button

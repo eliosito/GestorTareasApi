@@ -1,15 +1,21 @@
 import React, { useState } from 'react'
 import Modal from './Modal'
-import { MdFilterAlt } from 'react-icons/md'
+import { MdFilterAlt, MdApartment, MdWork, MdHome, MdPerson } from 'react-icons/md'
 
-export default function FiltroModal({ tareas, setTareasFiltradas }) {
+export default function FiltroModal({ tareas, setTareasFiltradas, setFiltroActivo }) {
     const [filtroAbierto, setFiltroAbierto] = useState(false)
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('')
 
-    const categorias = ['Hogar', 'Trabajo', 'Colegio', 'Personal']
+    const categoriasConIconos = [
+        { nombre: 'Hogar', icono: MdHome },
+        { nombre: 'Trabajo', icono: MdWork },
+        { nombre: 'Colegio', icono: MdApartment },
+        { nombre: 'Personal', icono: MdPerson }
+    ]
 
     const handleFiltro = (categoria) => {
         setCategoriaSeleccionada(categoria)
+        setFiltroActivo(categoria)  
         if (categoria === '') {
             setTareasFiltradas(tareas)
         } else {
@@ -20,6 +26,7 @@ export default function FiltroModal({ tareas, setTareasFiltradas }) {
 
     const limpiarFiltro = () => {
         setCategoriaSeleccionada('')
+        setFiltroActivo('') 
         setTareasFiltradas(tareas)
     }
 
@@ -38,13 +45,14 @@ export default function FiltroModal({ tareas, setTareasFiltradas }) {
                     <h2>Filtrar</h2>
 
                     <div className='filtro-opciones'>
-                        {categorias.map((categoria) => (
+                        {categoriasConIconos.map(({ nombre, icono: Icono }) => (
                             <button
-                                key={categoria}
-                                className={`filtro-opcion ${categoriaSeleccionada === categoria ? 'activo' : ''}`}
-                                onClick={() => handleFiltro(categoria)}
+                                key={nombre}
+                                className={`filtro-opcion ${categoriaSeleccionada === nombre ? 'activo' : ''}`}
+                                onClick={() => handleFiltro(nombre)}
                             >
-                                {categoria}
+                                <Icono size={20} />
+                                {nombre}
                             </button>
                         ))}
                     </div>
