@@ -2,12 +2,16 @@ import React, { useState } from 'react'
 import TarjetaTarea from './TarjetaTarea'
 import DetalleTarea from './DetalleTarea'
 import Modal from './Modal'
+import FiltroModal from './FiltroModal'
 import { MdDeleteOutline } from 'react-icons/md'
 
-export default function Contenedor({tareas, setTareas, eliminar, onAbrirFormulario}) {
+export default function Contenedor({ tareas, setTareas, eliminar, onAbrirFormulario }) {
 
   const [detalleAbierto, setDetalleAbierto] = useState(false)
   const [tareaSeleccionada, setTareaSeleccionada] = useState(null)
+
+  const [tareasFiltradas, setTareasFiltradas] = useState(tareas)
+
 
   const abrirDetalle = (tarea) => {
     setTareaSeleccionada(tarea)
@@ -20,18 +24,20 @@ export default function Contenedor({tareas, setTareas, eliminar, onAbrirFormular
   return (
     <>
       <div className='header-tareas'>
-        <div className='header-izquierda'>
-          <button className='btn-crear' onClick={onAbrirFormulario}>
-            + Crear Tarea
-          </button>
-          
-          <button 
+        <FiltroModal tareas={tareas} setTareasFiltradas={setTareasFiltradas} />
+
+        <div className='header-derecha'>
+          <button
             className='btn-eliminar'
             onClick={eliminar}
             disabled={seleccionadasCount === 0}
           >
             <MdDeleteOutline size={20} />
             {seleccionadasCount > 0 && <span className='contador'>{seleccionadasCount}</span>}
+          </button>
+
+          <button className='btn-crear' onClick={onAbrirFormulario}>
+            + Agregar Tarea
           </button>
         </div>
       </div>
@@ -47,21 +53,21 @@ export default function Contenedor({tareas, setTareas, eliminar, onAbrirFormular
           <div className='columna'>Prioridad</div>
         </div>
 
-        {tareas.map((tarea, index)=>
-        <div key={index} onClick={() => abrirDetalle(tarea)} className='fila-clickeable'>
-          <TarjetaTarea
-            index={index}
-            tareas={tareas}
-            setTareas={setTareas}
-            titulo={tarea.titulo}
-            categoria={tarea.categoria}
-            estado={tarea.estado}
-            FechaCreacion={tarea.FechaCreacion}
-            FechaVencimiento={tarea.FechaVencimiento}
-            prioridad={tarea.prioridad}
-            seleccionado={tarea.selecionado}
-          />
-        </div>
+        {tareasFiltradas.map((tarea, index) =>
+          <div key={index} onClick={() => abrirDetalle(tarea)} className='fila-clickeable'>
+            <TarjetaTarea
+              index={index}
+              tareas={tareas}
+              setTareas={setTareas}
+              titulo={tarea.titulo}
+              categoria={tarea.categoria}
+              estado={tarea.estado}
+              FechaCreacion={tarea.FechaCreacion}
+              FechaVencimiento={tarea.FechaVencimiento}
+              prioridad={tarea.prioridad}
+              seleccionado={tarea.selecionado}
+            />
+          </div>
         )}
       </div>
 
@@ -70,7 +76,7 @@ export default function Contenedor({tareas, setTareas, eliminar, onAbrirFormular
         cerrar={() => setDetalleAbierto(false)}
       >
         {tareaSeleccionada && (
-          <DetalleTarea 
+          <DetalleTarea
             tarea={tareaSeleccionada}
             cerrar={() => setDetalleAbierto(false)}
           />

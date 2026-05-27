@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function TarjetaTarea({titulo,categoria,estado,FechaCreacion,FechaVencimiento,prioridad,seleccionado,index,setTareas,tareas}) {
+function TarjetaTarea({ titulo, categoria, estado, FechaCreacion, FechaVencimiento, prioridad, seleccionado, index, setTareas, tareas }) {
 
   const handleCheckChange = (e) => {
     const tareasActualizadas = [...tareas];
@@ -18,7 +18,7 @@ function TarjetaTarea({titulo,categoria,estado,FechaCreacion,FechaVencimiento,pr
     return "estado-pendiente";
   }
 
-    const getPrioridadClass = (prioridad) => {
+  const getPrioridadClass = (prioridad) => {
     const prioridadNormalizada = prioridad.toLowerCase();
     if (prioridadNormalizada === 'alta') return 'prioridad-alta';
     if (prioridadNormalizada === 'media') return 'prioridad-media';
@@ -29,27 +29,27 @@ function TarjetaTarea({titulo,categoria,estado,FechaCreacion,FechaVencimiento,pr
 
   return (
     <div className='fila'>
-      <div className='columna checkbox-col'>
-        <input 
-        type="checkbox"
-        onChange={handleCheckChange}
-        checked={seleccionado}
+
+      <div className='checkbox-col'>
+        <input
+          type='checkbox'
+          onChange={handleCheckChange}
+          checked={seleccionado}
+          onClick={(e) => e.stopPropagation()}  
         />
-
-
       </div>
 
-        <div className='columna'>{titulo}</div>
-        <div className='columna'>{categoria}</div>
-        <div className={`columna ${getEstadoClass(estado)}`}>{estado}</div>
-        <div className='columna'>{FechaCreacion}</div>
-        <div className='columna'>{FechaVencimiento}</div>
-        <div className={`columna  ${getPrioridadClass(prioridad)}`}>{prioridad}</div>
-
-        
+      <div className='columna'>{titulo}</div>
+      <div className='columna'>{categoria}</div>
+      <div className={`columna ${getEstadoClass(estado)}`}>{estado}</div>
+      <div className='columna'>{FechaCreacion}</div>
+      <div className='columna'>{FechaVencimiento}</div>
+      <div className={`columna  ${getPrioridadClass(prioridad)}`}>{prioridad}</div>
 
 
-    
+
+
+
 
     </div>
   )

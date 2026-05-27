@@ -406,16 +406,24 @@ body {
 
 
 /* HEADER TAREAS */
+
 .header-tareas {
   width: 90%;
   max-width: 1200px;
   margin: 25px auto 15px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between;  
   align-items: center;
 }
 
 .header-izquierda {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+
+.header-derecha {
   display: flex;
   gap: 12px;
   align-items: center;
@@ -476,4 +484,88 @@ body {
 .btn-crear:hover {
   border-color: #999;
   background-color: #f9f9f9;
+}
+
+/* BOTÓN FILTRO */
+.btn-filtro {
+  background-color: white;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-filtro:hover {
+  border-color: #999;
+  background-color: #f9f9f9;
+}
+
+/* MODAL FILTRO */
+.filtro-contenedor {
+  min-width: 300px;
+}
+
+.filtro-contenedor h2 {
+  margin: 0 0 20px 0;
+  font-size: 20px;
+  color: #333;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 15px;
+}
+
+.filtro-opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.filtro-opcion {
+  background-color: white;
+  color: #666;
+  border: 1px solid #ddd;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filtro-opcion:hover {
+  border-color: #999;
+  background-color: #f9f9f9;
+}
+
+.filtro-opcion.activo {
+  background-color: #2196f3;
+  color: white;
+  border-color: #2196f3;
+}
+
+.btn-limpiar-filtro {
+  width: 100%;
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-limpiar-filtro:hover {
+  background-color: #e0e0e0;
 }
