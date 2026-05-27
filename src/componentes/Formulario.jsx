@@ -8,7 +8,14 @@ export default function Formulario({guardar}) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        guardar({...tarea})
+        const fecha = new Date().toLocaleDateString('es-ES')
+
+        
+        guardar({
+            ...tarea,
+            FechaCreacion: fecha
+
+        })
     }
 
 
@@ -48,30 +55,43 @@ export default function Formulario({guardar}) {
 
         <div className='formulario-grupo'>
             <div className='formulario-label'>Prioridad</div>
+
             <div className='prioridad-opciones'>
+
+
                 <div className='radio-grupo'>
-                    <input type="radio" id="alta" name="prioridad" value="Alta" />
+
+                    <input type="radio" id="alta" name="prioridad"  value="Alta"  onChange={(e) => setDatoTarea("prioridad",e.target.value)} checked={tarea.prioridad === "Alta"} />
                     <label htmlFor="alta">Alta</label>
+
                 </div>
                 <div className='radio-grupo'>
-                    <input type="radio" id="media" name="prioridad" value="Media" />
+
+                    <input type="radio" id="media" name="prioridad" value="Media" onChange={(e) => setDatoTarea("prioridad",e.target.value)} checked={tarea.prioridad === "Media"}/>
                     <label htmlFor="media">Media</label>
+
                 </div>
                 <div className='radio-grupo'>
-                    <input type="radio" id="baja" name="prioridad" value="Baja" />
+
+                    <input type="radio" id="baja" name="prioridad" value="Baja" onChange={(e) => setDatoTarea("prioridad",e.target.value)} checked={tarea.prioridad === "Baja"} />
                     <label htmlFor="baja">Baja</label>
+
                 </div>
+                
             </div>
+
         </div>
 
         <div className='formulario-grupo'>
             <input 
             type="date" 
             className='formulario-input'
+            onChange={(e) => setDatoTarea("FechaVencimiento",e.target.value)}
+            value={tarea.FechaVencimiento}
             placeholder='DD / MM / AAAA'
             />
         </div>
-        <button ype="submit" className='formulario-boton'>Guardar</button>
+        <button type="submit" className='formulario-boton'>Guardar</button>
 
 
     </div>
