@@ -133,3 +133,115 @@ body {
   border-radius: 10px;
   min-width: 300px;
 }
+
+/* formulari*/
+
+.formulario-contenedor {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formulario-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formulario-label {
+  font-weight: bold;
+  color: #333;
+  font-size: 14px;
+}
+
+.formulario-input,
+.formulario-textarea,
+.formulario-select {
+  border: 1px solid #ccc;
+  padding: 12px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.formulario-input:focus,
+.formulario-textarea:focus,
+.formulario-select:focus {
+  outline: none;
+  border-color: #2196f3;
+  box-shadow: 0 0 5px rgba(33, 150, 243, 0.3);
+}
+
+.formulario-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.formulario-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 35px;
+}
+
+
+/* mas*/
+
+
+.prioridad-opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid #ccc;
+  padding: 12px;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.radio-grupo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.radio-grupo input[type="radio"] {
+
+  cursor: pointer;
+  accent-color: #000000;
+}
+
+.radio-grupo label {
+  cursor: pointer;
+  font-size: 14px;
+  color: #2196f3;
+  font-weight: 500;
+}
+
+.radio-grupo label:hover {
+  color: #1976d2;
+}
+
+/* BOTÓN GUARDAR */
+.formulario-boton {
+  background-color: #2196f3;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 14px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.formulario-boton:hover {
+  background-color: #1976d2;
+}
+
+.formulario-boton:active {
+  background-color: #1565c0;
+}
