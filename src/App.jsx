@@ -6,7 +6,7 @@ import Modal from './componentes/Modal'
 
 
   let tareasDefault = [
-    {    titulo: "Limpiar cocina",categoria: "Hogar",estado:"Pendiente",FechaCreacion: "03/03/2026",FechaVencimiento: "05-05-2026",prioridad: "Alta",selecionado: false},
+    {    titulo: "Limpiar cocina",categoria: "Hogar",estado:"Pendiente",FechaCreacion: "03/03/2026",FechaVencimiento: "01-01-2020",prioridad: "Alta",selecionado: false},
     {    titulo: "Hacer tarea",categoria: "Colegio",estado:"En proceso",FechaCreacion: "03/03/2026",FechaVencimiento: "05-05-2026",prioridad: "Media",selecionado: false},
     {    titulo: "Leer libro",categoria: "Colegio",estado:"Finalizado",FechaCreacion: "03/03/2026",FechaVencimiento: "05-05-2026",prioridad: "Baja",selecionado: false},
 
