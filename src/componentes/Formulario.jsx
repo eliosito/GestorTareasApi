@@ -1,7 +1,7 @@
 import React from 'react'
 import useTarea from '../hooks/useTarea'
 
-export default function Formulario({guardar}) {
+export default function Formulario() {
 
     const [tarea, setDatoTarea] = useTarea();
 
@@ -20,7 +20,7 @@ export default function Formulario({guardar}) {
 
 
     return (
-        <form onSubmit={handleSubmit}>
+<form onSubmit={handleSubmit}>
     <div className='formulario-contenedor'>
         <div className='formulario-grupo'>
 
@@ -96,5 +96,7 @@ export default function Formulario({guardar}) {
 
     </div>
     </form>
+        
     )
 }
+

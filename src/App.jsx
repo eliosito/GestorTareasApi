@@ -1,47 +1,64 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import Contenedor from './componentes/Contenedor'
 import Formulario from './componentes/Formulario'
 import Modal from './componentes/Modal'
 
+import axios from 'axios'
 
-  let tareasDefault = [
-    {    titulo: "Limpiar cocina",categoria: "Hogar",estado:"Pendiente",FechaCreacion: "03/03/2026",FechaVencimiento: "01-01-2020",prioridad: "Alta",selecionado: false},
-    {    titulo: "Hacer tarea",categoria: "Colegio",estado:"En proceso",FechaCreacion: "03/03/2026",FechaVencimiento: "05-05-2026",prioridad: "Media",selecionado: false},
-    {    titulo: "Leer libro",categoria: "Colegio",estado:"Finalizado",FechaCreacion: "03/03/2026",FechaVencimiento: "05-05-2026",prioridad: "Baja",selecionado: false},
+import { Router, Route, Switch } from 'wouter'
+import Home from './componentes/Home'
+import Header from './componentes/Header'
+import Pagina from './componentes/Pagina'
 
-  ]
+
+
+
 
 function App() {
 
-  const [tareas, setTareas] = useState(tareasDefault)
-
-  const [abierto,setAbierto] = useState(false)
-
-  const eliminarSeleccionadas = () => {
-    const tareasActualizadas = tareas.filter(tarea => !tarea.selecionado)
-    setTareas(tareasActualizadas)
-  }
-
-  const guardar = (tarea) => {
-
-    console.log(tarea);
-    let nuevasTareas = [...tareas];
-    nuevasTareas.push(tarea)
-
-    setTareas(nuevasTareas)
-  }
-
-
-
-  console.log({tareas})
+  useEffect(()=> {
+    const url = "https://api-tareas.ctpoba.edu.ar/api";
+    axios.get(url)
+    .then ((resp) => {
+      console.log(resp)
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+  }, [])
 
   return (
-    <>
+    
+      <div>
+        <Header/>
+
+        <Switch>
+            <Route path="/" component={Home} />
+            <Route path="/formulario" component={Formulario} />
+            <Route path="/contenedor" component={Contenedor} />
+
+            <Route>
+                <h1>404 - Página no encontrada</h1>
+            </Route>
+        </Switch>
+
+      
 
 
 
-    <Modal
+      </div>
+
+
+
+
+
+    
+  )
+}
+
+export default App
+{/*     <Modal
     abierto={abierto}
     cerrar={() => setAbierto(false)}
     >
@@ -60,10 +77,4 @@ function App() {
     onAbrirFormulario={() => setAbierto(true)} 
     
 
-    />
-
-    </>
-  )
-}
-
-export default App
+    /> */}
