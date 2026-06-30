@@ -1,5 +1,6 @@
 import React from 'react'
 import useTarea from '../hooks/useTarea'
+import axios from 'axios';
 
 export default function Formulario() {
 
@@ -8,13 +9,20 @@ export default function Formulario() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const fecha = new Date().toLocaleDateString('es-ES')
-
+        const url = "https://api-tareas.ctpoba.edu.ar/api/tareas"
         
-        guardar({
-            ...tarea,
-            FechaCreacion: fecha
+        const config = {
+            headers: { Authorization: "48354750"}
+        }
 
+        axios.post(url,tarea, config)
+        .then ((resp) => {
+            console.log(resp);
+            alert("Tarea guardada")
+        })
+        .catch((error) => {
+            console.error(error)
+            alert("Error al guardar")
         })
     }
 
