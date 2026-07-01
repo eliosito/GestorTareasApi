@@ -24,6 +24,8 @@ export default function Formulario() {
             console.error(error)
             alert("Error al guardar")
         })
+
+        
     }
 
 

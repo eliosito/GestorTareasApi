@@ -2,11 +2,6 @@ import React, { useState } from 'react'
 
 function TarjetaTarea({ nombre, categoria, estado, FechaCreacion, FechaVencimiento, prioridad, seleccionado, index, setTareas, tareas }) {
 
-  const handleCheckChange = (e) => {
-    const tareasActualizadas = [...tareas];
-    tareasActualizadas[index].selecionado = e.target.checked;
-    setTareas(tareasActualizadas);
-  }
 
 
 
@@ -19,10 +14,9 @@ function TarjetaTarea({ nombre, categoria, estado, FechaCreacion, FechaVencimien
   }
 
   const getPrioridadClass = (prioridad) => {
-    const prioridadNormalizada = prioridad.toLowerCase();
-    if (prioridadNormalizada === 1) return 'prioridad-alta';
-    if (prioridadNormalizada === 2) return 'prioridad-media';
-    if (prioridadNormalizada === 3) return 'prioridad-baja';
+    if (prioridad === 1) return 'prioridad-alta';
+    if (prioridad === 2) return 'prioridad-media';
+    if (prioridad === 3) return 'prioridad-baja';
     return 'prioridad-baja';
   };
 
@@ -43,16 +37,15 @@ function TarjetaTarea({ nombre, categoria, estado, FechaCreacion, FechaVencimien
         className={`columna estado ${getEstadoClass(estado)}`}
         onClick={(e) => {
           e.stopPropagation()  // no abrir el modal de detalles
-      
+
         }}
         style={{ cursor: 'pointer' }}
       >
         {estado}
       </div>
 
-        
-{/*       <div className='columna'>{FechaCreacion}</div>
-      <div className='columna'>{FechaVencimiento}</div> */}
+
+
       <div className={`columna  ${getPrioridadClass(prioridad)}`}>{prioridad}</div>
 
 

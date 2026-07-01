@@ -1,6 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdChecklistRtl, MdDescription, MdOutlineFlag, MdCalendarToday, MdKeyboardArrowUp } from 'react-icons/md'
+import axios from 'axios'
+
 export default function DetalleTarea({ tarea, cerrar }) {
+    const [tareaDetalle, setTareaDetalle] = useState(tarea)
+    const [cargando, setCargando] = useState(false)
+
+    useEffect(() => {
+        if (tarea && tarea.id) {
+            setCargando(true)
+            const url = `https://api-tareas.ctpoba.edu.ar/api/tareas/${tarea.id}`
+            const config = {
+                headers: { Authorization: "48354750" }
+            }
+
+            axios.get(url, config)
+                .then((resp) => {
+                    setTareaDetalle(resp.data.tarea)
+                    setCargando(false)
+                })
+                .catch((error) => {
+                    console.error(error)
+                    setCargando(false)
+                })
+        }
+    }, [tarea.id])
 
     const getEstadoColor = (estado) => {
         const estadoNormalizado = estado.toLowerCase();
@@ -18,6 +42,9 @@ export default function DetalleTarea({ tarea, cerrar }) {
         return '#d4f0f8';
     }
 
+    if (cargando) {
+        return <div className='detalle-contenedor'><p>Cargando...</p></div>
+    }
 
     return (
         <div className='detalle-contenedor'>
@@ -34,7 +61,7 @@ export default function DetalleTarea({ tarea, cerrar }) {
                 </div>
                 <div className='detalle-contenido'>
                     <p className='detalle-label'>Titulo</p>
-                    <p className='detalle-valor'>{tarea.titulo}</p>
+                    <p className='detalle-valor'>{tareaDetalle.nombre}</p>
                 </div>
             </div>
 
@@ -42,7 +69,7 @@ export default function DetalleTarea({ tarea, cerrar }) {
 
             <div className='detalle-seccion-full'>
                 <p className='detalle-label-full'>Descripción</p>
-                <p className='detalle-valor-full'>{tarea.descripcion || 'Sin descripción'}</p>
+                <p className='detalle-valor-full'>{tareaDetalle.descripcion || 'Sin descripción'}</p>
             </div>
 
             <hr className='detalle-separator' />
@@ -55,47 +82,27 @@ export default function DetalleTarea({ tarea, cerrar }) {
                     </div>
                     <div className='detalle-contenido'>
                         <p className='detalle-label'>Estado</p>
-                        <span className='detalle-badge' style={{ backgroundColor: getEstadoColor(tarea.estado) }}>
-                            {tarea.estado}
+                        <span className='detalle-badge' style={{ backgroundColor: getEstadoColor(tareaDetalle.estado) }}>
+                            {tareaDetalle.estado}
                         </span>
                     </div>
                 </div>
 
-                <div className='detalle-seccion'>
-                    <div className='detalle-icono-contenedor' style={{ backgroundColor: '#f8d4d4' }}>
-                        <MdCalendarToday className='detalle-icono' style={{ color: '#d32f2f' }} />
-                    </div>
-                    <div className='detalle-contenido'>
-                        <p className='detalle-label'>Fecha de creación</p>
-                        <p className='detalle-valor'>{tarea.FechaCreacion}</p>
-                    </div>
-                </div>
-            </div>
-
-
-            <div className='detalle-grid'>
-                <div className='detalle-seccion'>
-                    <div className='detalle-icono-contenedor' style={{ backgroundColor: '#d4e8f8' }}>
-                        <MdCalendarToday className='detalle-icono' style={{ color: '#1976d2' }} />
-                    </div>
-                    <div className='detalle-contenido'>
-                        <p className='detalle-label'>Fecha de vencimiento</p>
-                        <p className='detalle-valor'>{tarea.FechaVencimiento}</p>
-                    </div>
-                </div>
-
-                <div className='detalle-seccion'>
-                    <div className='detalle-icono-contenedor' style={{ backgroundColor: getPrioridadColor(tarea.prioridad) }}>
+                                <div className='detalle-seccion'>
+                    <div className='detalle-icono-contenedor' style={{ backgroundColor: getPrioridadColor(tareaDetalle.prioridad) }}>
                         <MdKeyboardArrowUp className='detalle-icono' style={{ color: '#6c11c4' }} />
                     </div>
                     <div className='detalle-contenido'>
                         <p className='detalle-label'>Prioridad</p>
-                        <span className='detalle-badge' style={{ backgroundColor: getPrioridadColor(tarea.prioridad) }}>
-                            {tarea.prioridad}
+                        <span className='detalle-badge' style={{ backgroundColor: getPrioridadColor(tareaDetalle.prioridad) }}>
+                            {tareaDetalle.prioridad}
                         </span>
                     </div>
                 </div>
+
             </div>
+
+
 
             <hr className='detalle-separator' />
 
