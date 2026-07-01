@@ -1,5 +1,8 @@
 import React from 'react'
 import { Link } from 'wouter'
+import { MdHome } from "react-icons/md";
+import { FaTasks } from "react-icons/fa";
+import { IoMdAdd } from "react-icons/io";
 
 export default function Header() {
   return (
@@ -15,10 +18,9 @@ export default function Header() {
             <MdDeleteOutline size={20} />
             {seleccionadasCount > 0 && <span className='contador'>{seleccionadasCount}</span>}
           </button> */}
-            <Link className='btn-crear' href='/'>Inicio</Link>
-            <Link className='btn-crear' href='/contenedor'>Contenedor</Link>
-            <Link className='btn-crear' href='/formulario'>Formulario</Link>
-
+            <Link className='btn-crear' href='/'>  <MdHome/>  Inicio</Link>
+            <Link className='btn-crear' href='/contenedor'> <FaTasks/> Tareas</Link>
+            <Link className='btn-crear' href='/formulario'> <IoMdAdd/> Agregar Tarea</Link>
         </div>
       </div> 
 

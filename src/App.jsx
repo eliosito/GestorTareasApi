@@ -3,12 +3,14 @@ import './App.css'
 import Contenedor from './componentes/Contenedor'
 import Formulario from './componentes/Formulario'
 import Modal from './componentes/Modal'
+import Pagina from './componentes/Pagina'
 
 import axios from 'axios'
 
 import { Router, Route, Switch } from 'wouter'
 import Home from './componentes/Home'
 import Header from './componentes/Header'
+import Footer from './componentes/Footer'
 
 
 
@@ -39,11 +41,11 @@ function App() {
             <Route path="/contenedor" component={Contenedor} />
 
             <Route>
-                <h1>404 - Página no encontrada</h1>
+                <Pagina/>
             </Route>
         </Switch>
 
-      
+      <Footer/>
 
 
 

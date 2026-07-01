@@ -569,3 +569,117 @@ body {
 .btn-limpiar-filtro:hover {
   background-color: #e0e0e0;
 }
+
+.welcome-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around; /* Distribuye mejor el espacio a gran escala */
+  background-color: #f5f5f5;
+  padding: 80px 60px; /* Más espacio interno */
+  width: 100%;
+  max-width: 1200px; /* Pantalla considerablemente más ancha */
+  margin: 0 auto;
+  min-height: 400px; /* Le da una altura robusta de banner principal */
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.welcome-text h1 {
+  color: #000000;
+  font-size: 4.5rem; /* Texto significativamente más grande */
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.welcome-image img {
+  width: 320px; /* Imagen mucho más grande y visible */
+  height: auto;
+  display: block;
+}
+
+/* Ajuste para pantallas medianas/laptops */
+@media (max-width: 1024px) {
+  .welcome-text h1 {
+    font-size: 3.5rem;
+  }
+  .welcome-image img {
+    width: 260px;
+  }
+}
+
+/* Responsivo para móviles */
+@media (max-width: 768px) {
+  .welcome-container {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 40px;
+    padding: 40px 20px;
+  }
+  
+  .welcome-text h1 {
+    font-size: 2.8rem;
+  }
+  
+  .welcome-image img {
+    width: 200px;
+  }
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end; /* Alinea los elementos internos (texto y logo) a la parte inferior */
+  background-color: #f5f5f5; /* Fondo blanco como en la imagen */
+  padding: 40px; /* Espaciado interno general */
+  border-radius: 4px; /* Un pequeño borde redondeado simulando el contenedor gris */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Sombra sutil opcional */
+  font-family: Arial, sans-serif; /* Tipografía limpia */
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 250px; /* Altura mínima para mantener la proporción */
+}
+
+.footer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* Espacio uniforme entre líneas de texto */
+  text-align: left;
+}
+
+.footer-info p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #333333; /* Color oscuro para el texto */
+}
+
+/* Espaciado adicional para separar la sección del Profesor */
+.footer-info .footer-professor {
+  margin-top: 16px; 
+}
+
+.footer-logo-container {
+  display: flex;
+  align-items: flex-end; /* Asegura que se pegue a la esquina inferior derecha */
+}
+
+.footer-logo {
+  width: 65px; /* Tamaño del logo institucional */
+  height: auto;
+  display: block;
+}
+
+/* Responsivo para pantallas pequeñas */
+@media (max-width: 600px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 24px;
+  }
+  
+  .footer-logo-container {
+    align-self: flex-end; /* En móviles mantiene el logo abajo a la derecha */
+  }
+}
