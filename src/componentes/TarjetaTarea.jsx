@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function TarjetaTarea({ nombre, categoria, estado, FechaCreacion, FechaVencimiento, prioridad, seleccionado, index, setTareas, tareas }) {
+function TarjetaTarea({ nombre, categoria, estado, prioridad, seleccionado, index, setTareas, tareas }) {
 
 
 
@@ -14,11 +14,21 @@ function TarjetaTarea({ nombre, categoria, estado, FechaCreacion, FechaVencimien
   }
 
   const getPrioridadClass = (prioridad) => {
-    if (prioridad === 1) return 'prioridad-alta';
-    if (prioridad === 2) return 'prioridad-media';
-    if (prioridad === 3) return 'prioridad-baja';
+    const prioridadString = String(prioridad).trim();
+    if (prioridadString === '1') return 'prioridad-alta';
+    if (prioridadString === '2') return 'prioridad-media';
+    if (prioridadString === '3') return 'prioridad-baja';
     return 'prioridad-baja';
   };
+
+  const getPrioridadTexto = (prioridad) => {
+    const prioridadString = String(prioridad).trim();
+    if (prioridadString === '1') return 'Alta';
+    if (prioridadString === '2') return 'Media';
+    if (prioridadString === '3') return 'Baja';
+    return prioridad;
+  };
+
 
 
 
@@ -46,7 +56,7 @@ function TarjetaTarea({ nombre, categoria, estado, FechaCreacion, FechaVencimien
 
 
 
-      <div className={`columna  ${getPrioridadClass(prioridad)}`}>{prioridad}</div>
+        <div className={`columna  ${getPrioridadClass(prioridad)}`}>{getPrioridadTexto(prioridad)}</div>
 
 
 

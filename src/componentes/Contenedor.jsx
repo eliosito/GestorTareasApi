@@ -52,23 +52,7 @@ export default function Contenedor() {
 
   return (
     <>
-    {/*   <div className='header-tareas'>
-
-        <div className='header-derecha'>
-          <button
-            className='btn-eliminar'
-            onClick={eliminar}
-            disabled={seleccionadasCount === 0}
-          >
-            <MdDeleteOutline size={20} />
-            {seleccionadasCount > 0 && <span className='contador'>{seleccionadasCount}</span>}
-          </button>
-
-          <button className='btn-crear' onClick={onAbrirFormulario}>
-            + Agregar Tarea
-          </button>
-        </div>
-      </div> */}
+    {/**/}
 
       <div className='contenedor'>
         <div className='fila cabecera'>
