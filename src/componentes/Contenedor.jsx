@@ -1,26 +1,46 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TarjetaTarea from './TarjetaTarea'
 import DetalleTarea from './DetalleTarea'
+import axios from 'axios'
 import Modal from './Modal'
 import FiltroModal from './FiltroModal'
 import { MdDeleteOutline } from 'react-icons/md'
+export default function Contenedor() {
 
-export default function Contenedor({ tareas, setTareas, eliminar, onAbrirFormulario }) {
+  const [tareas, setTareas] = useState([])
+
+  const actualizar = () => {
+    const url = "https://api-tareas.ctpoba.edu.ar/api/tareas"
+
+    const config = {
+      headers: { Authorization: "48354750" }
+    }
+
+    console.log("hola")
+
+    axios.get(url,config)
+      .then((resp) => {
+        
+        console.log(resp)
+        setTareas(resp.data.tareas)
+
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+    
+  }
+
+  useEffect(() =>{
+    console.log("Tareas cargadas")
+    actualizar();
+  },[])
+
 
   const [detalleAbierto, setDetalleAbierto] = useState(false)
   const [tareaSeleccionada, setTareaSeleccionada] = useState(null)
 
-const [tareasFiltradas, setTareasFiltradas] = useState(tareas)
-const [filtroActivo, setFiltroActivo] = useState('')
 
-React.useEffect(() => {
-  if (filtroActivo === '') {
-    setTareasFiltradas(tareas)
-  } else {
-    const filtradas = tareas.filter(t => t.categoria === filtroActivo)
-    setTareasFiltradas(filtradas)
-  }
-}, [tareas, filtroActivo])
 
   const abrirDetalle = (tarea) => {
     setTareaSeleccionada(tarea)
@@ -32,8 +52,7 @@ React.useEffect(() => {
 
   return (
     <>
-      <div className='header-tareas'>
-        <FiltroModal tareas={tareas} setTareasFiltradas={setTareasFiltradas}   setFiltroActivo={setFiltroActivo} />
+    {/*   <div className='header-tareas'>
 
         <div className='header-derecha'>
           <button
@@ -49,7 +68,7 @@ React.useEffect(() => {
             + Agregar Tarea
           </button>
         </div>
-      </div>
+      </div> */}
 
       <div className='contenedor'>
         <div className='fila cabecera'>
@@ -57,22 +76,18 @@ React.useEffect(() => {
           <div className='columna'>Titulo</div>
           <div className='columna'>Categoria</div>
           <div className='columna'>Estado</div>
-          <div className='columna'>Fecha Creacion</div>
-          <div className='columna'>Fecha Ven</div>
           <div className='columna'>Prioridad</div>
         </div>
 
-        {tareasFiltradas.map((tarea, index) =>
+        {tareas.map((tarea, index) =>
           <div key={index} onClick={() => abrirDetalle(tarea)} className='fila-clickeable'>
             <TarjetaTarea
               index={index}
               tareas={tareas}
               setTareas={setTareas}
-              titulo={tarea.titulo}
+              nombre={tarea.nombre}
               categoria={tarea.categoria}
               estado={tarea.estado}
-              FechaCreacion={tarea.FechaCreacion}
-              FechaVencimiento={tarea.FechaVencimiento}
               prioridad={tarea.prioridad}
               seleccionado={tarea.selecionado}
             />

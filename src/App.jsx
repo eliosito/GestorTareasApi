@@ -9,7 +9,7 @@ import axios from 'axios'
 import { Router, Route, Switch } from 'wouter'
 import Home from './componentes/Home'
 import Header from './componentes/Header'
-import Pagina from './componentes/Pagina'
+
 
 
 

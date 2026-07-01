@@ -1,7 +1,9 @@
 import React from 'react'
 
-export default function Pagina() {
+function Pagina() {
   return (
     <div>Pagina</div>
   )
 }
+
+export default Pagina

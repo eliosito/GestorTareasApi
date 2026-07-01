@@ -33,9 +33,9 @@ export default function Formulario() {
         <div className='formulario-grupo'>
 
             <input type="text" 
-            placeholder='Titulo'
-            onChange={(e) => setDatoTarea("titulo",e.target.value)}
-            value={tarea.titulo}
+            placeholder='Nombre'
+            onChange={(e) => setDatoTarea("nombre",e.target.value)}
+            value={tarea.nombre}
             className='formulario-input'/>
         </div>
         <div className='formulario-grupo'>
@@ -69,19 +69,19 @@ export default function Formulario() {
 
                 <div className='radio-grupo'>
 
-                    <input type="radio" id="alta" name="prioridad"  value="Alta"  onChange={(e) => setDatoTarea("prioridad",e.target.value)} checked={tarea.prioridad === "Alta"} />
+                    <input type="radio" id="alta" name="prioridad"  value="1"  onChange={(e) => setDatoTarea("prioridad",e.target.value)} checked={tarea.prioridad === "1"} />
                     <label htmlFor="alta">Alta</label>
 
                 </div>
                 <div className='radio-grupo'>
 
-                    <input type="radio" id="media" name="prioridad" value="Media" onChange={(e) => setDatoTarea("prioridad",e.target.value)} checked={tarea.prioridad === "Media"}/>
+                    <input type="radio" id="media" name="prioridad" value="2" onChange={(e) => setDatoTarea("prioridad",e.target.value)} checked={tarea.prioridad === "2"}/>
                     <label htmlFor="media">Media</label>
 
                 </div>
                 <div className='radio-grupo'>
 
-                    <input type="radio" id="baja" name="prioridad" value="Baja" onChange={(e) => setDatoTarea("prioridad",e.target.value)} checked={tarea.prioridad === "Baja"} />
+                    <input type="radio" id="baja" name="prioridad" value="3" onChange={(e) => setDatoTarea("prioridad",e.target.value)} checked={tarea.prioridad === "3"} />
                     <label htmlFor="baja">Baja</label>
 
                 </div>
@@ -90,15 +90,6 @@ export default function Formulario() {
 
         </div>
 
-        <div className='formulario-grupo'>
-            <input 
-            type="date" 
-            className='formulario-input'
-            onChange={(e) => setDatoTarea("FechaVencimiento",e.target.value)}
-            value={tarea.FechaVencimiento}
-            placeholder='DD / MM / AAAA'
-            />
-        </div>
         <button type="submit" className='formulario-boton'>Guardar</button>
 
 

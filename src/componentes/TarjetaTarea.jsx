@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function TarjetaTarea({ titulo, categoria, estado, FechaCreacion, FechaVencimiento, prioridad, seleccionado, index, setTareas, tareas }) {
+function TarjetaTarea({ nombre, categoria, estado, FechaCreacion, FechaVencimiento, prioridad, seleccionado, index, setTareas, tareas }) {
 
   const handleCheckChange = (e) => {
     const tareasActualizadas = [...tareas];
@@ -20,53 +20,39 @@ function TarjetaTarea({ titulo, categoria, estado, FechaCreacion, FechaVencimien
 
   const getPrioridadClass = (prioridad) => {
     const prioridadNormalizada = prioridad.toLowerCase();
-    if (prioridadNormalizada === 'alta') return 'prioridad-alta';
-    if (prioridadNormalizada === 'media') return 'prioridad-media';
-    if (prioridadNormalizada === 'baja') return 'prioridad-baja';
+    if (prioridadNormalizada === 1) return 'prioridad-alta';
+    if (prioridadNormalizada === 2) return 'prioridad-media';
+    if (prioridadNormalizada === 3) return 'prioridad-baja';
     return 'prioridad-baja';
   };
 
-  const cambiarEstado = () => {
-  const estados = ['Pendiente', 'En proceso', 'Finalizado']
-  const indexActual = estados.indexOf(estado)
-  const siguienteIndex = (indexActual + 1) % estados.length
-  const nuevoEstado = estados[siguienteIndex]
-  
-  const tareasActualizadas = [...tareas]
-  tareasActualizadas[index].estado = nuevoEstado
-  setTareas(tareasActualizadas)
-}
+
 
 
   return (
     <div className='fila'>
 
       <div className='checkbox-col'>
-        <input
-          type='checkbox'
-          onChange={handleCheckChange}
-          checked={seleccionado}
-          onClick={(e) => e.stopPropagation()}
-        />
+
       </div>
 
-      <div className='columna'>{titulo}</div>
+      <div className='columna'>{nombre}</div>
       <div className='columna'>{categoria}</div>
 
       <div
         className={`columna estado ${getEstadoClass(estado)}`}
         onClick={(e) => {
           e.stopPropagation()  // no abrir el modal de detalles
-          cambiarEstado()
+      
         }}
         style={{ cursor: 'pointer' }}
       >
         {estado}
       </div>
 
-
-      <div className='columna'>{FechaCreacion}</div>
-      <div className='columna'>{FechaVencimiento}</div>
+        
+{/*       <div className='columna'>{FechaCreacion}</div>
+      <div className='columna'>{FechaVencimiento}</div> */}
       <div className={`columna  ${getPrioridadClass(prioridad)}`}>{prioridad}</div>
 
 
