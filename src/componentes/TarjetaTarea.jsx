@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function TarjetaTarea({ nombre, categoria, estado, prioridad, seleccionado, index, setTareas, tareas }) {
+function TarjetaTarea({ nombre, categoria, estado, prioridad, seleccionado, setTareas, tareas }) {
 
 
 

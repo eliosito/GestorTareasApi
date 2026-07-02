@@ -10,7 +10,7 @@ export default function Footer() {
         <p className="footer-professor">Profesor: Damian Greco</p>
       </div>
       <div className="footer-logo-container">
-        <img src="/images.jpg" alt="Logo Institucional" className="footer-logo" />
+        <img src="/images.png" alt="Logo Institucional" className="footer-logo" />
       </div>
     </footer>
   )

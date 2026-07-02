@@ -66,7 +66,6 @@ export default function Contenedor() {
         {tareas.map((tarea, index) =>
           <div key={index} onClick={() => abrirDetalle(tarea)} className='fila-clickeable'>
             <TarjetaTarea
-              index={index}
               tareas={tareas}
               setTareas={setTareas}
               nombre={tarea.nombre}

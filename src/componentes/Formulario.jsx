@@ -78,7 +78,7 @@ export default function Formulario() {
                 </div>
 
                 <div className='columna-derecha'>
-r
+
 
                     <div className='formulario-grupo grupo-textarea-full'>
                         <label className='formulario-label'>Descripcion de tarea</label>
