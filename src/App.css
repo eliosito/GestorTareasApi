@@ -294,8 +294,31 @@ body {
 
 /* formulari*/
 
-.formulario-contenedor {
+/* ESTILOS NUEVOS PARA REPLICAR LA IMAGEN */
+
+.formulario-raiz {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background-color: #f5f5f5;
+}
+
+.formulario-contenedor-imagen {
+  background-color: #ffffff;
+  border: 1px solid #b5b5b5;
+  padding: 40px;
   width: 100%;
+  max-width: 950px; /* Ancho similar al recuadro gris de la imagen */
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr; /* La columna derecha es ligeramente más ancha */
+  gap: 40px;
+  font-family: Arial, sans-serif;
+}
+
+.columna-izquierda, 
+.columna-derecha {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -304,106 +327,115 @@ body {
 .formulario-grupo {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 }
 
 .formulario-label {
-  font-weight: bold;
-  color: #333;
-  font-size: 14px;
+  font-size: 22px; /* Tamaño grande de los títulos de los inputs */
+  font-weight: normal;
+  color: #000000;
+  margin: 0;
 }
 
 .formulario-input,
-.formulario-textarea,
 .formulario-select {
-  border: 1px solid #ccc;
+  border: 1px solid #a0a0a0;
+  padding: 10px 12px;
+  font-size: 16px;
+  border-radius: 0px; /* En tu mockup los bordes son rectos */
+  width: 100%;
+  max-width: 300px; /* Limita el ancho como se ve en tu diseño */
+  box-sizing: border-box;
+  height: 42px;
+  background-color: #fff;
+}
+
+.formulario-textarea-imagen {
+  border: 1px solid #a0a0a0;
   padding: 12px;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  border-radius: 4px;
+  font-size: 16px;
+  border-radius: 0px;
+  width: 100%;
+  height: 200px; /* Altura ideal de la caja de descripción */
+  resize: none;
   box-sizing: border-box;
 }
 
-.formulario-input:focus,
-.formulario-textarea:focus,
-.formulario-select:focus {
-  outline: none;
-  border-color: #2196f3;
-  box-shadow: 0 0 5px rgba(33, 150, 243, 0.3);
-}
-
-.formulario-textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-
+/* Selector customizado sin la flecha pesada */
 .formulario-select {
-  cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%23555' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
   padding-right: 35px;
+  cursor: pointer;
 }
 
-
-/* mas*/
-
-
-.prioridad-opciones {
+/* Opciones de Prioridad */
+.prioridad-opciones-imagen {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  border: 1px solid #ccc;
-  padding: 12px;
-  border-radius: 4px;
-  background-color: #f9f9f9;
+  gap: 14px;
+  padding-top: 5px;
 }
 
-.radio-grupo {
+.radio-grupo-imagen {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 15px;
 }
 
-.radio-grupo input[type="radio"] {
-
+.radio-grupo-imagen input[type="radio"] {
+  width: 20px;
+  height: 20px;
   cursor: pointer;
-  accent-color: #000000;
+  accent-color: #b5b5b5; /* Mantiene el estilo neutro de los radios */
 }
 
-.radio-grupo label {
+.radio-grupo-imagen label {
   cursor: pointer;
-  font-size: 14px;
-  color: #2196f3;
+  font-size: 18px;
   font-weight: 500;
 }
 
-.radio-grupo label:hover {
-  color: #1976d2;
+/* Colores de las etiquetas de prioridad idénticos al diseño */
+.text-alta { color: #a100ff; }
+.text-media { color: #6100ff; }
+.text-baja { color: #0099ff; }
+
+/* Botón Guardar */
+.contenedor-boton-guardar {
+  display: flex;
+  justify-content: flex-end; /* Lo empuja por completo a la esquina derecha */
+  margin-top: auto; /* Hace que se pegue al fondo de la columna */
 }
 
-/* BOTÓN GUARDAR */
-.formulario-boton {
-  background-color: #2196f3;
-  color: rgb(0, 0, 0);
+.formulario-boton-imagen {
+  background-color: #0b8ce9; /* Azul vibrante exacto de la imagen */
+  color: #000000; /* Texto negro */
   border: none;
-  padding: 14px;
-  border-radius: 4px;
-  font-size: 16px;
-  font-weight: bold;
+  padding: 12px 60px; /* Relleno horizontal ancho */
+  font-size: 18px;
+  font-weight: normal;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
-.formulario-boton:hover {
-  background-color: #1976d2;
+.formulario-boton-imagen:hover {
+  background-color: #0a7cd1;
 }
 
-.formulario-boton:active {
-  background-color: #1565c0;
+/* Vista responsiva automática */
+@media (max-width: 768px) {
+  .formulario-contenedor-imagen {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 20px;
+  }
+  .formulario-input, .formulario-select {
+    max-width: 100%;
+  }
 }
-
 
 /* HEADER TAREAS */
 
@@ -466,6 +498,9 @@ body {
   font-weight: bold;
 }
 
+
+
+
 .btn-crear {
   background-color: white;
   color: #333;
@@ -477,6 +512,7 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
+  text-decoration: none; /* Quita la línea de abajo */
   align-items: center;
   gap: 8px;
 }
