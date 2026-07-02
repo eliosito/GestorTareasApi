@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
+import { TiDelete } from "react-icons/ti";
 
-function TarjetaTarea({ nombre, categoria, estado, prioridad, seleccionado, setTareas, tareas }) {
+function TarjetaTarea({ nombre, categoria, estado, prioridad, seleccionado, setTareas, tareas , eliminar}) {
 
 
 
@@ -36,8 +37,8 @@ function TarjetaTarea({ nombre, categoria, estado, prioridad, seleccionado, setT
   return (
     <div className='fila'>
 
-      <div className='checkbox-col'>
-
+      <div className='checkbox-col' onClick={(e) => {e.stopPropagation() }} style={{ cursor: 'pointer' }} >
+        <span className='Eliminar'  onClick={() => eliminar()} ><TiDelete/></span>
       </div>
 
       <div className='columna'>{nombre}</div>

@@ -51,9 +51,6 @@ body {
   
 }
 
-.columna:last-child {
-  border-right: none;
-}
 
 /* CABECERA */
 .cabecera {

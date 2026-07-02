@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export default function Formulario() {
 
-    const [tarea, setDatoTarea] = useTarea();
+    const [tarea, setDatoTarea, limpiarFormulario] = useTarea();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -19,6 +19,7 @@ export default function Formulario() {
             .then((resp) => {
                 console.log(resp);
                 alert("Tarea guardada")
+                limpiarFormulario();
             })
             .catch((error) => {
                 console.error(error)
@@ -41,6 +42,7 @@ export default function Formulario() {
                             onChange={(e) => setDatoTarea("nombre", e.target.value)}
                             value={tarea.nombre}
                             className='formulario-input'
+                            required 
                         />
                     </div>
 
@@ -84,7 +86,7 @@ export default function Formulario() {
                         <label className='formulario-label'>Descripcion de tarea</label>
                         <textarea
                             onChange={(e) => setDatoTarea("descripcion", e.target.value)}
-                            value={tarea.descripcions}
+                            value={tarea.descripcion}
                             className='formulario-textarea-imagen'
                         ></textarea>
                     </div>

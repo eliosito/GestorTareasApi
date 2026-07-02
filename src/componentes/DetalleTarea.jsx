@@ -26,21 +26,30 @@ export default function DetalleTarea({ tarea, cerrar }) {
         }
     }, [tarea.id])
 
-    const getEstadoColor = (estado) => {
-        const estadoNormalizado = estado.toLowerCase();
+    const getEstadoClass = (estado) => {
+        let estadoNormalizado = estado.toLowerCase();
         if (estadoNormalizado === "pendiente") return '#fff3cd'
         if (estadoNormalizado === 'en proceso') return '#fff3cd';
         if (estadoNormalizado === 'finalizado') return '#d4edda';
         return '#fff3cd';
     }
 
-    const getPrioridadColor = (prioridad) => {
-        const prioridadNormalizada = prioridad.toLowerCase();
-        if (prioridadNormalizada === 'alta') return '#e8d4f8';
-        if (prioridadNormalizada === 'media') return '#d4e8f8';
-        if (prioridadNormalizada === 'baja') return '#d4f0f8';
+    const getPrioridadClass = (prioridad) => {
+        const prioridadString = String(prioridad).trim();
+        if (prioridadString === '1') return '#e8d4f8';
+        if (prioridadString === '2') return '#8776af';
+        if (prioridadString === '3') return '#d4f0f8';
         return '#d4f0f8';
-    }
+    };
+
+    const getPrioridadTexto = (prioridad) => {
+        const prioridadString = String(prioridad).trim();
+        if (prioridadString === '1') return 'Alta';
+        if (prioridadString === '2') return 'Media';
+        if (prioridadString === '3') return 'Baja';
+        return prioridad;
+    };
+
 
     if (cargando) {
         return <div className='detalle-contenedor'><p>Cargando...</p></div>
@@ -82,20 +91,20 @@ export default function DetalleTarea({ tarea, cerrar }) {
                     </div>
                     <div className='detalle-contenido'>
                         <p className='detalle-label'>Estado</p>
-                        <span className='detalle-badge' style={{ backgroundColor: getEstadoColor(tareaDetalle.estado) }}>
+                        <span className='detalle-badge' style={{ backgroundColor: getEstadoClass(tareaDetalle.estado) }}>
                             {tareaDetalle.estado}
                         </span>
                     </div>
                 </div>
 
-                                <div className='detalle-seccion'>
-                    <div className='detalle-icono-contenedor' style={{ backgroundColor: getPrioridadColor(tareaDetalle.prioridad) }}>
+                <div className='detalle-seccion'>
+                    <div className='detalle-icono-contenedor' style={{ backgroundColor: getPrioridadClass(tareaDetalle.prioridad) }}>
                         <MdKeyboardArrowUp className='detalle-icono' style={{ color: '#6c11c4' }} />
                     </div>
                     <div className='detalle-contenido'>
                         <p className='detalle-label'>Prioridad</p>
-                        <span className='detalle-badge' style={{ backgroundColor: getPrioridadColor(tareaDetalle.prioridad) }}>
-                            {tareaDetalle.prioridad}
+                        <span className='detalle-badge' style={{ backgroundColor: getPrioridadClass(tareaDetalle.prioridad) }}>
+                            {getPrioridadTexto(tareaDetalle.prioridad)}
                         </span>
                     </div>
                 </div>

@@ -48,7 +48,25 @@ export default function Contenedor() {
   }
 
 
-  const seleccionadasCount = tareas.filter(t => t.selecionado).length;
+
+  const eliminar = (persona_id) => {
+    const url = `https://api-tareas.ctpoba.edu.ar/api/tareas/${persona_id}`
+    const config = {
+      headers: { Authorization: "48354750" }
+    }
+
+    axios.delete(url, config)
+      .then((resp) => {
+        console.log(resp.data);
+        alert("Se elimino la tarea")
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        actualizar()
+      })
+  }
 
   return (
     <>
@@ -72,7 +90,7 @@ export default function Contenedor() {
               categoria={tarea.categoria}
               estado={tarea.estado}
               prioridad={tarea.prioridad}
-              seleccionado={tarea.selecionado}
+              eliminar={() => eliminar(tarea.id)}
             />
           </div>
         )}
