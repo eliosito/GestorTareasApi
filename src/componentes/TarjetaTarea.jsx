@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
 import { TiDelete } from "react-icons/ti";
 
-function TarjetaTarea({ nombre, categoria, estado, prioridad, seleccionado, setTareas, tareas , eliminar}) {
+function TarjetaTarea({ nombre, categoria, estado, prioridad, seleccionado, setTareas, tareas , eliminar, cambiarEstado}) {
 
 
 
 
   const getEstadoClass = (estado) => {
     let estadoNormalizado = estado.toLowerCase();
-    if (estadoNormalizado === "pendiente") return 'estado-pendiente'
-    if (estadoNormalizado === 'en proceso') return 'estado-en-proceso';
-    if (estadoNormalizado === 'finalizado') return 'estado-finalizado';
+    if (estadoNormalizado === "en curso") return 'estado-pendiente'
+    if (estadoNormalizado === 'completada') return 'estado-finalizado';
     return "estado-pendiente";
   }
 
@@ -38,7 +37,7 @@ function TarjetaTarea({ nombre, categoria, estado, prioridad, seleccionado, setT
     <div className='fila'>
 
       <div className='checkbox-col' onClick={(e) => {e.stopPropagation() }} style={{ cursor: 'pointer' }} >
-        <span className='Eliminar'  onClick={() => eliminar()} ><TiDelete/></span>
+        <span className='Eliminar'  onClick={() => eliminar()} ><TiDelete size={30}/></span>
       </div>
 
       <div className='columna'>{nombre}</div>
@@ -47,7 +46,8 @@ function TarjetaTarea({ nombre, categoria, estado, prioridad, seleccionado, setT
       <div
         className={`columna estado ${getEstadoClass(estado)}`}
         onClick={(e) => {
-          e.stopPropagation()  // no abrir el modal de detalles
+          e.stopPropagation()
+          cambiarEstado()  // no abrir el modal de detalles
 
         }}
         style={{ cursor: 'pointer' }}

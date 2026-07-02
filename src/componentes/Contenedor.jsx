@@ -5,6 +5,9 @@ import axios from 'axios'
 import Modal from './Modal'
 import FiltroModal from './FiltroModal'
 import { MdDeleteOutline } from 'react-icons/md'
+
+import { MdDelete } from "react-icons/md";
+
 export default function Contenedor() {
 
   const [tareas, setTareas] = useState([])
@@ -49,8 +52,8 @@ export default function Contenedor() {
 
 
 
-  const eliminar = (persona_id) => {
-    const url = `https://api-tareas.ctpoba.edu.ar/api/tareas/${persona_id}`
+  const eliminar = (tarea_id) => {
+    const url = `https://api-tareas.ctpoba.edu.ar/api/tareas/${tarea_id}`
     const config = {
       headers: { Authorization: "48354750" }
     }
@@ -68,13 +71,39 @@ export default function Contenedor() {
       })
   }
 
+
+  const cambiarEstado = (tarea_id) => {
+
+    const url = `https://api-tareas.ctpoba.edu.ar/api/tareas/estado/${tarea_id}`
+    
+    const config = {
+      headers: { Authorization: "48354750"}
+    }
+
+    const body = {
+      estado: "completada"
+    }
+
+    axios.put(url,body,config)
+    .then((resp) => {
+      console.log(resp.data);
+      alert("Estado actualizado a completada")
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+    .finally(() => {
+      actualizar()  // Recarga las tareas para ver el cambio
+    })
+      
+  }
   return (
     <>
     {/**/}
 
       <div className='contenedor'>
         <div className='fila cabecera'>
-          <div className='columna'>X</div>
+          <div className='columna'><MdDelete size={17}/></div>
           <div className='columna'>Titulo</div>
           <div className='columna'>Categoria</div>
           <div className='columna'>Estado</div>
@@ -91,6 +120,7 @@ export default function Contenedor() {
               estado={tarea.estado}
               prioridad={tarea.prioridad}
               eliminar={() => eliminar(tarea.id)}
+              cambiarEstado={() => cambiarEstado(tarea.id)}
             />
           </div>
         )}

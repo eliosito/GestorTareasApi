@@ -6,7 +6,7 @@ export default function useTarea() {
     const [nombre, setNombre] = useState("")
     const [descripcion, setDescripcion] = useState("")
     const [categoria, setCategoria] = useState("Hogar")
-    const [estado, setEstado] = useState("Pendiente")
+    const [estado, setEstado] = useState("en curso")
     const [prioridad, setPrioridad] = useState(3)
     const [eliminada, setEliminada] = useState(false)
 
@@ -28,7 +28,7 @@ export default function useTarea() {
         setNombre("")
         setDescripcion("")
         setCategoria("Hogar")
-        setEstado("Pendiente")
+        setEstado("en curso")
         setPrioridad(3)
         setEliminada(false)
     }
