@@ -12,13 +12,24 @@ export default function Contenedor() {
 
   const [tareas, setTareas] = useState([])
   const [categoriaFiltro, setCategoriaFiltro] = useState("")
+  const [orden, setOrden] = useState("")
 
-  const actualizar = (categoria = "") => {
+  const actualizar = (categoria = "", orden = "") => {
     let url = "https://api-tareas.ctpoba.edu.ar/api/tareas"
+    const params = []
 
     if (categoria) {
-      url = `https://api-tareas.ctpoba.edu.ar/api/tareas?categoria=${categoria}`
+      params.push(`categoria=${categoria}`)
     }
+    if (orden) {
+      params.push(`orden=${orden}`)
+    }
+
+    if (params.length > 0) {
+      url = url + "?" + params.join("&")
+    }
+    // Resultado: ?categoria=Trabajo&orden=ASC
+
     const config = {
       headers: { Authorization: "48354750" }
     }
@@ -108,25 +119,42 @@ export default function Contenedor() {
     actualizar(categoria)
   }
 
+  const cambiarOrden = (orden) => {
+    setOrden(orden)
+    actualizar(orden)
+  }
+
+
   useEffect(() => {
-  console.log("Filtro cambió:", categoriaFiltro)
-  actualizar(categoriaFiltro)
-}, [categoriaFiltro])  
+    actualizar(categoriaFiltro, orden)
+  }, [categoriaFiltro, orden])
   return (
     <>
       {/**/}
-<div className='filtro-header'>
-  <select 
-    value={categoriaFiltro}
-    onChange={(e) => cambiarFiltro(e.target.value)}
-    className='filtro-select'
-  >
-    <option value="">Todas las categorías</option>
-    <option value="Hogar">Hogar</option>
-    <option value="Trabajo">Trabajo</option>
-    <option value="Personal">Personal</option>
-  </select>
-</div>
+      <div className='filtro-header'>
+        <select
+          value={categoriaFiltro}
+          onChange={(e) => setCategoriaFiltro(e.target.value)}
+          className='filtro-select'
+        >
+          <option value="">Todas las categorías</option>
+          <option value="Hogar">Hogar</option>
+          <option value="Trabajo">Trabajo</option>
+          <option value="Personal">Personal</option>
+        </select>
+
+        <select
+          value={orden}
+          onChange={(e) => setOrden(e.target.value)}
+          className='filtro-select'
+        >
+          <option value="">Ordenar</option>
+          <option value="ASC">Ascendente</option>
+          <option value="DESC">Descendente</option>
+
+        </select>
+
+      </div>
 
 
 

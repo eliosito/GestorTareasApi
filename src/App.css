@@ -749,3 +749,33 @@ body {
 .Eliminar:hover {
   color: #d32f2f;
 }
+
+.filtro-select {
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 15px;
+  background-color: white;
+  color: #333;
+  cursor: pointer;
+  min-width: 150px;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,...");  /* SVG flecha personalizada */
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 40px;
+}
+
+.filtro-header {
+  width: 90%;
+  max-width: 1150px;
+  margin: 20px auto 0;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}

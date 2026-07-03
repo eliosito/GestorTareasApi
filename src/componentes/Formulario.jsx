@@ -34,7 +34,6 @@ export default function Formulario() {
         <form onSubmit={handleSubmit} className="formulario-raiz">
             <div className='formulario-contenedor-imagen'>
 
-                {/* COLUMNA IZQUIERDA */}
                 <div className='columna-izquierda'>
                     <div className='formulario-grupo'>
                         <label className='formulario-label'>Titulo</label>
@@ -43,6 +42,7 @@ export default function Formulario() {
                             value={tarea.nombre}
                             className='formulario-input'
                             required 
+                            maxlength="30"
                         />
                     </div>
 
