@@ -28,10 +28,9 @@ export default function DetalleTarea({ tarea, cerrar }) {
 
     const getEstadoClass = (estado) => {
         let estadoNormalizado = estado.toLowerCase();
-        if (estadoNormalizado === "pendiente") return '#fff3cd'
-        if (estadoNormalizado === 'en proceso') return '#fff3cd';
-        if (estadoNormalizado === 'finalizado') return '#d4edda';
-        return '#fff3cd';
+        if (estadoNormalizado === "en curso") return '#d8dad8'
+        if (estadoNormalizado === 'completada') return '#66ca7d';
+        return '#d8dad8';
     }
 
     const getPrioridadClass = (prioridad) => {
@@ -86,8 +85,8 @@ export default function DetalleTarea({ tarea, cerrar }) {
 
             <div className='detalle-grid'>
                 <div className='detalle-seccion'>
-                    <div className='detalle-icono-contenedor' style={{ backgroundColor: '#fff3cd' }}>
-                        <MdOutlineFlag className='detalle-icono' style={{ color: '#ff9800' }} />
+                    <div className='detalle-icono-contenedor' style={{ backgroundColor: getEstadoClass(tareaDetalle.estado) }}>
+                        <MdOutlineFlag className='detalle-icono' style={{ color: '#5c5955' }} />
                     </div>
                     <div className='detalle-contenido'>
                         <p className='detalle-label'>Estado</p>

@@ -11,19 +11,23 @@ import { MdDelete } from "react-icons/md";
 export default function Contenedor() {
 
   const [tareas, setTareas] = useState([])
+  const [categoriaFiltro, setCategoriaFiltro] = useState("")
 
-  const actualizar = () => {
-    const url = "https://api-tareas.ctpoba.edu.ar/api/tareas"
+  const actualizar = (categoria = "") => {
+    let url = "https://api-tareas.ctpoba.edu.ar/api/tareas"
 
+    if (categoria) {
+      url = `https://api-tareas.ctpoba.edu.ar/api/tareas?categoria=${categoria}`
+    }
     const config = {
       headers: { Authorization: "48354750" }
     }
 
     console.log("hola")
 
-    axios.get(url,config)
+    axios.get(url, config)
       .then((resp) => {
-        
+
         console.log(resp)
         setTareas(resp.data.tareas)
 
@@ -31,13 +35,14 @@ export default function Contenedor() {
       .catch((error) => {
         console.error(error)
       })
-    
+
   }
 
-  useEffect(() =>{
+  useEffect(() => {
     console.log("Tareas cargadas")
     actualizar();
-  },[])
+  }, [])
+
 
 
   const [detalleAbierto, setDetalleAbierto] = useState(false)
@@ -53,7 +58,7 @@ export default function Contenedor() {
 
 
   const eliminar = (tarea_id) => {
-    const url = `https://api-tareas.ctpoba.edu.ar/api/tareas/${tarea_id}`
+    let url = `https://api-tareas.ctpoba.edu.ar/api/tareas/${tarea_id}`
     const config = {
       headers: { Authorization: "48354750" }
     }
@@ -67,43 +72,67 @@ export default function Contenedor() {
         console.error(error);
       })
       .finally(() => {
-        actualizar()
+        actualizar(categoriaFiltro)
       })
   }
 
 
   const cambiarEstado = (tarea_id) => {
 
-    const url = `https://api-tareas.ctpoba.edu.ar/api/tareas/estado/${tarea_id}`
-    
+    let url = `https://api-tareas.ctpoba.edu.ar/api/tareas/estado/${tarea_id}`
+
     const config = {
-      headers: { Authorization: "48354750"}
+      headers: { Authorization: "48354750" }
     }
 
     const body = {
       estado: "completada"
     }
 
-    axios.put(url,body,config)
-    .then((resp) => {
-      console.log(resp.data);
-      alert("Estado actualizado a completada")
-    })
-    .catch((error) => {
-      console.error(error);
-    })
-    .finally(() => {
-      actualizar()  // Recarga las tareas para ver el cambio
-    })
-      
+    axios.put(url, body, config)
+      .then((resp) => {
+        console.log(resp.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        actualizar(categoriaFiltro)  // Recarga las tareas para ver el cambio
+      })
+
   }
+
+
+  const cambiarFiltro = (categoria) => {
+    setCategoriaFiltro(categoria)
+    actualizar(categoria)
+  }
+
+  useEffect(() => {
+  console.log("Filtro cambió:", categoriaFiltro)
+  actualizar(categoriaFiltro)
+}, [categoriaFiltro])  
   return (
     <>
-    {/**/}
+      {/**/}
+<div className='filtro-header'>
+  <select 
+    value={categoriaFiltro}
+    onChange={(e) => cambiarFiltro(e.target.value)}
+    className='filtro-select'
+  >
+    <option value="">Todas las categorías</option>
+    <option value="Hogar">Hogar</option>
+    <option value="Trabajo">Trabajo</option>
+    <option value="Personal">Personal</option>
+  </select>
+</div>
+
+
 
       <div className='contenedor'>
         <div className='fila cabecera'>
-          <div className='columna'><MdDelete size={17}/></div>
+          <div className='columna'><MdDelete size={17} /></div>
           <div className='columna'>Titulo</div>
           <div className='columna'>Categoria</div>
           <div className='columna'>Estado</div>
